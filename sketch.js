@@ -6,10 +6,10 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var polygon,polygonImg;
 var backgroundIMG;
-
+var score =0
 function preload(){
   polygonImg=loadImage("polygon.png");
-  backgroundIMG = loadImage("Cool-Backgrounds-for-Zoom-Meetings-4_4d470f76dc99e18ad75087b1b8410ea9.jpg")
+  getTime();
 }
 function setup() {
   var canvas = createCanvas(1000,400);
@@ -53,7 +53,7 @@ function setup() {
   chain1=new SlingShot(this.polygon,{x:200,y:200});
 }
 function draw() {
-  background(backgroundIMG); 
+  if(backgroundIMG){background(backgroundIMG);} 
   Engine.update(engine);
   fill(135,206,234);
   b1.display();
@@ -93,6 +93,35 @@ function draw() {
   ground3.display();
   imageMode(CENTER);
   image(polygonImg,this.polygon.position.x,this.polygon.position.y,40,40);
+  text("SCORE: "+score,750,40)
+
+  b1.score();
+  b2.score();
+  b3.score();
+  b4.score();
+  b5.score();
+  b6.score();
+  b7.score();
+  b8.score();
+  b9.score();
+  b10.score();
+  b11.score();
+  b12.score();
+  b13.score();
+  b14.score();
+  b15.score();
+  b16.score();
+  b17.score();
+  b18.score();
+  b19.score();
+  b20.score();
+  b21.score();
+  b22.score();
+  b23.score();
+  b24.score();
+  b25.score();
+
+
   drawSprites();
 }
 function mouseDragged(){
@@ -111,3 +140,27 @@ if(keyCode === 32){
 
 }
 }
+
+async function getTime(){
+
+  var response = await fetch ("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+  var converter = await response.json();
+  console.log(converter.datetime);
+  var datetime = converter.datetime;
+  var slicer = datetime.slice(11,13);
+  console.log(slicer)
+  if (slicer >= 06 && slicer <= 18){
+
+      bg = "bg.png";
+
+  }
+
+  else {
+
+      bg = "bg2.jpg";
+  }
+
+  backgroundIMG = loadImage(bg)
+}
+
+
